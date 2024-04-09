@@ -66,7 +66,7 @@ const Hero = () => {
     <>
       <p>
         I’m a software engineer specializing in devops, cloud and occasionally building web
-        applications. Currently, I’m focused on bridging the gap betwwen devs and operations at {' '}
+        applications. Currently, I’m focused on bridging the gap between devs and operations at {' '}
         <a href="https://reallygreattech.com/" target="_blank" rel="noreferrer">
           RGT
         </a>

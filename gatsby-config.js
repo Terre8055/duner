@@ -5,8 +5,8 @@ module.exports = {
     title: 'Dankwah | DevOps',
     description:
       'Dankwah is a software engineer who specializes in cloud, devOps and occasionally develop applications.',
-    siteUrl: 'https://brittanychiang.com', // No trailing slash allowed!
-    image: '/og.png', // Path to your image you placed in the 'static' folder
+    siteUrl: 'https://appiahdankwah.online', // No trailing slash allowed!
+    image: 'static/og.png', // Path to your image you placed in the 'static' folder
     twitterUsername: '@devmike_git',
   },
   plugins: [
