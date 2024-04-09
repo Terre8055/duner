@@ -1,13 +1,13 @@
 ---
 date: '2017-12-21'
-title: 'DevOps Engineer'
-company: 'RGT'
+title: 'DevOps Trainee'
+company: 'RGT Training'
 location: 'Accra - Ghana'
 range: 'November 2023 - March 2024'
 url: 'https://develeap.com'
 ---
 
-My time at develeap devops training organized by RGT was intense and exciting. I experienced the world of devops from writing bash scripts to fully automating software deployment on cloud and on-prem infra.
+Before I delved into devops and cloud computing, I participated in an intense 3-month devops bootcamp organised at RGT. I experienced the world of devops from writing bash scripts to fully automating software deployment on cloud and on-prem infra.
 To summarise my time in the training, I perfomed the following projects: 
 
 - Writing and integrating Jenkins Pipelines and jobs into GitLab projects, streamlining continuous integration and deployment processes.
