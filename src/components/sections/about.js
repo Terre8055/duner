@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import ReactPlayer from 'react-player';
 import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import { srConfig } from '@config';
@@ -125,7 +126,17 @@ const About = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const skills = ['JavaScript (ES6+)', 'Python', 'Jenkins', 'Kubernetes', 'Terraform', 'Docker', 'ArgoCD', 'Prometheus', 'AWS Compute'];
+  const skills = [
+    'JavaScript (ES6+)',
+    'Python',
+    'Jenkins',
+    'Kubernetes',
+    'Terraform',
+    'Docker',
+    'ArgoCD',
+    'Prometheus',
+    'AWS Compute',
+  ];
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
@@ -135,25 +146,25 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              I am a Ghanaian software engineer specialising in DevOps and Cloud Infrastructure. 
-              My interest for software development peaked in 2022 when I had to join a
-              software engineering bootcamp at <a href="https://alxafrica.com/">alx</a>. 
+              I am a Ghanaian software engineer specialising in DevOps and Cloud Infrastructure. My
+              interest for software development peaked in 2022 when I had to join a software
+              engineering bootcamp at <a href="https://alxafrica.com/">alx</a>.
             </p>
 
             <p>
               Fast-forward to today, and I’ve had the privilege of working at{' '}
-              <a href="https://xacent.com/">Xacent</a>, a software development startup based in Ontario as a fullstack developer and my current company {' '}
-              <a href="https://reallygreattech.com/">RGT</a>, a software development company where I operate as a DevOps Engineer. {' '}
-              My main focus these days is ensuring web applications, mobile native applications, are reliable and highly available {' '}
-              to its users while facilitating effective in-house development of software products
+              <a href="https://xacent.com/">Xacent</a>, a software development startup based in
+              Ontario as a fullstack developer and my current company{' '}
+              <a href="https://reallygreattech.com/">RGT</a>, a software development company where I
+              operate as a DevOps Engineer. My main focus these days is ensuring web applications,
+              mobile native applications, are reliable and highly available to its users while
+              facilitating effective in-house development of software products
             </p>
 
             <p>
-              I also take pride in sharing new knowlege I encounter on {' '}
-              <a href="https://medium.com/@michaeladev">
-                medium
-              </a>{' '}
-              ranging from programming languages, developement best practices and operations.
+              I also take pride in sharing new knowlege I encounter on{' '}
+              <a href="https://medium.com/@michaeladev">medium</a> ranging from programming
+              languages, developement best practices and operations.
             </p>
 
             <p>Here are a few technologies I’ve been working with recently:</p>
@@ -176,6 +187,29 @@ const About = () => {
             />
           </div>
         </StyledPic>
+        <StyledText>
+          <div>
+            <h2 className="numbered-heading">Highlight</h2>
+          </div>
+          <div>
+            <ReactPlayer
+              url="/df.mp4"
+              width={500}
+              controls={true}
+              config={{
+                file: {
+                  tracks: [{ kind: 'subtitles', src: 'lecture.srt', srcLang: 'en', default: true }],
+                },
+              }}
+            />
+          </div>
+          <div>
+            <p>
+              Check it out on <a href="https://medium.com/@michaeladev">Medium </a> where I explain
+              how these metrics improved my team's release strategy and deployment frequency by 60%{' '}
+            </p>
+          </div>
+        </StyledText>
       </div>
     </StyledAboutSection>
   );
