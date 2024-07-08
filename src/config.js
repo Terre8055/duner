@@ -21,10 +21,17 @@ module.exports = {
       name: 'About',
       url: '/#about',
     },
+
+    {
+      name: 'Highlight',
+      url: '/#highlight',
+    },
+
     {
       name: 'Experience',
       url: '/#jobs',
     },
+
     {
       name: 'Work',
       url: '/#projects',
