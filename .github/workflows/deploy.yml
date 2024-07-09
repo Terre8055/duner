@@ -38,17 +38,17 @@ jobs:
       uses: actions/cache@v3
       with:
         path: node_modules
-        key: node_modules-${{hashFiles('yarn.lock')}}
+        key: node_modules-${{hashFiles('package-lock.json')}}
         restore-keys: node_modules-
 
 
     - name: Install dependencies
       run: |
-        yarn install
+        npm install
 
     - name: Build 
       run: |
-          yarn build
+          npm run build
 
 
     - name: Zip and Upload to S3
