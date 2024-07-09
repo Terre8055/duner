@@ -51,16 +51,13 @@ jobs:
           yarn build
 
 
-    - name: Zip project files
-      run: |
-        zip -r app.zip * .[^.]*
-
-    - name: Upload to S3
+    - name: Zip and Upload to S3
       env:
         AWS_REGION: us-east-1  # Change to your AWS region
         S3_BUCKET: duner-bucket-2024  # Change to your S3 bucket name
         APP_VERSION: app-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
       run: |
+        zip -r $APP_VERSION * .[^.]*
         aws s3 cp $APP_VERSION s3://$S3_BUCKET/app.zip
 
     - name: Deploy to Elastic Beanstalk
