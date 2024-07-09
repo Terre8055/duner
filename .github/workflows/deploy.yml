@@ -18,6 +18,14 @@ jobs:
       with:
         node-version: '14'
 
+    - name: Set vars
+      id: set-vars
+      run: |
+        echo "short_sha=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
+        echo "build_time=$(date +'%Y%m%d-%s')" >> $GITHUB_OUTPUT
+
+
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -26,23 +34,12 @@ jobs:
         aws-region: us-east-1  # Change to your AWS region
 
 
-    - name: Get yarn cache directory path
-      id: yarn-cache-dir-path
-      run: |
-          echo "::set-output name=dir::$(yarn cache dir)"
-          echo "::set-output name=version::$(yarn -v)"
-
-    - name: Save cache
-      uses: actions/cache@v2
-      id: yarn-cache
+    - name: Cache node modules
+      uses: actions/cache@v3
       with:
-        path: |
-            **/node_modules
-            **/.eslintcache
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: ${{ runner.os }}-yarn-
+        path: node_modules
+        key: node_modules-${{hashFiles('yarn.lock')}}
+        restore-keys: node_modules-
 
 
     - name: Install dependencies
@@ -62,15 +59,17 @@ jobs:
       env:
         AWS_REGION: us-east-1  # Change to your AWS region
         S3_BUCKET: duner-bucket-2024  # Change to your S3 bucket name
+        APP_VERSION: app-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
       run: |
-        aws s3 cp app.zip s3://$S3_BUCKET/app.zip
+        aws s3 cp $APP_VERSION s3://$S3_BUCKET/app.zip
 
     - name: Deploy to Elastic Beanstalk
       env:
         AWS_REGION: us-east-1  # Change to your AWS region
         APPLICATION_NAME: beta-app-duner  # Change to your Elastic Beanstalk application name
+        APP_VERSION: app-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
         ENVIRONMENT_NAME: Beta-app-duner-env  # Change to your Elastic Beanstalk environment name
         S3_BUCKET: duner-bucket-2024
       run: |
-        aws elasticbeanstalk create-application-version --application-name $APPLICATION_NAME --version-label $(date +%Y%m%d%H%M%S) --source-bundle S3Bucket=$S3_BUCKET,S3Key=app.zip
-        aws elasticbeanstalk update-environment --environment-name $ENVIRONMENT_NAME --version-label $(date +%Y%m%d%H%M%S)
+        aws elasticbeanstalk create-application-version --application-name $APPLICATION_NAME --version-label $APP_VERSION --source-bundle S3Bucket=$S3_BUCKET,S3Key=app.zip
+        aws elasticbeanstalk update-environment --environment-name $ENVIRONMENT_NAME --version-label $APP_VERSION
