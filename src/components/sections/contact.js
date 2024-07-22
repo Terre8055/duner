@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { srConfig, email } from '@config';
+import { srConfig } from '@config';
 import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
 
@@ -53,15 +53,26 @@ const Contact = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = '//cdn.credly.com/assets/utilities/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <StyledContactSection id="contact" ref={revealContainer}>
-      <h2 className="numbered-heading overline">What’s Next?</h2>
-
-      <h2 className="title">Get In Touch</h2>
-
-      <a className="email-link" href={`mailto:${email}`}>
-        Say Hello
-      </a>
+      <h2 className="numbered-heading overline">Badges</h2>
+      <div
+        data-iframe-width="150"
+        data-iframe-height="270"
+        data-share-badge-id="e23ebb3d-1a3f-4b71-b9b4-66217f06c6ec"
+        data-share-badge-host="https://www.credly.com"></div>
+      <div
+        data-iframe-width="150"
+        data-iframe-height="350"
+        data-share-badge-id="00348f6a-d62d-4923-aadd-11e2f9e8a5e8"
+        data-share-badge-host="https://www.credly.com"></div>
     </StyledContactSection>
   );
 };
