@@ -138,6 +138,13 @@ const About = () => {
     'AWS Compute',
   ];
 
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = '//cdn.credly.com/assets/utilities/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
       <h2 className="numbered-heading">About Me</h2>
@@ -186,12 +193,11 @@ const About = () => {
               alt="Headshot"
             />
           </div>
+          <br></br>
         </StyledPic>
         <StyledText>
           <div>
             <h2 className="numbered-heading">Highlight</h2>
-          </div>
-          <div>
             <ReactPlayer
               url="/df.mp4"
               width={500}

@@ -61,7 +61,7 @@ const Contact = () => {
   }, []);
 
   return (
-    <StyledContactSection id="contact" ref={revealContainer}>
+    <StyledContactSection id="badges" ref={revealContainer}>
       <h2 className="numbered-heading overline">Badges</h2>
       <div
         data-iframe-width="150"
