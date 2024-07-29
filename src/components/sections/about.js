@@ -4,6 +4,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import { srConfig } from '@config';
 import sr from '@utils/sr';
+import IconAlerts from './alertsig';
 import { usePrefersReducedMotion } from '@hooks';
 
 const StyledAboutSection = styled.section`
@@ -211,17 +212,11 @@ const About = () => {
           </div>
           <div>
             <p>
-              Check it out on <a href="https://medium.com/@michaeladev">Medium </a> where I explain
-              how these metrics improved my team's release strategy and deployment frequency by 60%{' '}
+              Check it out where I explain how these metrics improved my team's release strategy and
+              deployment frequency by 60%{' '}
             </p>
             <br />
-            <div>
-              <label htmlFor="file">Article Completion Status: </label>
-              <br />
-              <progress id="file" max="100" value="40" style={{ backgroundColor: 'white' }}>
-                40%
-              </progress>
-            </div>
+            <IconAlerts />
           </div>
         </StyledText>
       </div>
