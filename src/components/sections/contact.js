@@ -73,6 +73,11 @@ const Contact = () => {
         data-iframe-height="350"
         data-share-badge-id="00348f6a-d62d-4923-aadd-11e2f9e8a5e8"
         data-share-badge-host="https://www.credly.com"></div>
+      <div
+        data-iframe-width="150"
+        data-iframe-height="270"
+        data-share-badge-id="12506f3e-b0cf-46d4-a12c-8d4c9a748221"
+        data-share-badge-host="https://www.credly.com"></div>
     </StyledContactSection>
   );
 };
