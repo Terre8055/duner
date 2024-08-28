@@ -68,7 +68,7 @@ const StyledPost = styled.li`
     padding: 2rem 1.75rem;
     border-radius: var(--border-radius);
     transition: var(--transition);
-    background-color: var(--light-navy);
+    background-color: white;
 
     header,
     a {
@@ -211,7 +211,10 @@ export default PensievePage;
 export const pageQuery = graphql`
   {
     allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/content/posts/" }, frontmatter: { draft: { ne: true } } }
+      filter: {
+        fileAbsolutePath: { regex: "/content/posts/" }
+        frontmatter: { draft: { ne: true } }
+      }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {

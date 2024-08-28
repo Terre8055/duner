@@ -1,72 +1,72 @@
-name: Deploy to Elastic Beanstalk
+# name: Deploy to Elastic Beanstalk
 
-on:
-  push:
-    branches:
-      - main  # Change this to your default branch
+# on:
+#   push:
+#     branches:
+#       - main 
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '14'
+#     - name: Set up Node.js
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: '14'
 
-    - name: Set vars
-      id: set-vars
-      run: |
-        echo "short_sha=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
-        echo "build_time=$(date +'%Y%m%d-%s')" >> $GITHUB_OUTPUT
-
-
-
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1  # Change to your AWS region
+#     - name: Set vars
+#       id: set-vars
+#       run: |
+#         echo "short_sha=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
+#         echo "build_time=$(date +'%Y%m%d-%s')" >> $GITHUB_OUTPUT
 
 
-    - name: Cache node modules
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: node_modules-${{hashFiles('package-lock.json')}}
-        restore-keys: node_modules-
+
+#     - name: Configure AWS credentials
+#       uses: aws-actions/configure-aws-credentials@v1
+#       with:
+#         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#         aws-region: us-east-1
 
 
-    - name: Install dependencies
-      run: |
-        npm install
+#     - name: Cache node modules
+#       uses: actions/cache@v3
+#       with:
+#         path: node_modules
+#         key: node_modules-${{hashFiles('package-lock.json')}}
+#         restore-keys: node_modules-
 
-    - name: Build 
-      run: |
-          npm run build
+
+#     - name: Install dependencies
+#       run: |
+#         npm install
+
+#     - name: Build 
+#       run: |
+#           npm run build
 
 
-    - name: Zip and Upload to S3
-      env:
-        AWS_REGION: us-east-1  # Change to your AWS region
-        S3_BUCKET: duner-bucket-2024  # Change to your S3 bucket name
-        APP_VERSION: app-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
-      run: |
-        zip -r $APP_VERSION * .[^.]*
-        aws s3 cp $APP_VERSION s3://$S3_BUCKET/app.zip
+#     - name: Zip and Upload to S3
+#       env:
+#         AWS_REGION: us-east-1  
+#         S3_BUCKET: *****
+#         APP_VERSION: app-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
+#       run: |
+#         zip -r $APP_VERSION * .[^.]*
+#         aws s3 cp $APP_VERSION s3://$S3_BUCKET/app.zip
 
-    - name: Deploy to Elastic Beanstalk
-      env:
-        AWS_REGION: us-east-1  # Change to your AWS region
-        APPLICATION_NAME: beta-app-duner  # Change to your Elastic Beanstalk application name
-        APP_VERSION: app-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
-        ENVIRONMENT_NAME: Beta-app-duner-env  # Change to your Elastic Beanstalk environment name
-        S3_BUCKET: duner-bucket-2024
-      run: |
-        aws elasticbeanstalk create-application-version --application-name $APPLICATION_NAME --version-label $APP_VERSION --source-bundle S3Bucket=$S3_BUCKET,S3Key=app.zip
-        aws elasticbeanstalk update-environment --environment-name $ENVIRONMENT_NAME --version-label $APP_VERSION
+#     - name: Deploy to Elastic Beanstalk
+#       env:
+#         AWS_REGION: us-east-1  
+#         APPLICATION_NAME: beta-app-duner 
+#         APP_VERSION: app-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
+#         ENVIRONMENT_NAME: Beta-app-duner-env-prod 
+#         S3_BUCKET: ******
+#       run: |
+#         aws elasticbeanstalk create-application-version --application-name $APPLICATION_NAME --version-label $APP_VERSION --source-bundle S3Bucket=$S3_BUCKET,S3Key=app.zip
+#         aws elasticbeanstalk update-environment --environment-name $ENVIRONMENT_NAME --version-label $APP_VERSION
