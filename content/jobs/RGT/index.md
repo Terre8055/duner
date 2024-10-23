@@ -7,5 +7,7 @@ range: 'April 2024 - Present'
 url: 'https://reallygreattech.com'
 ---
 
-- At ReallyGreatTech(RGT), I ensure new software features are shipped faster to product users using cutting edge technologies like git, Jenkins or Github Actions, other CI tools, Kubernetes and ArgoCD. 
-- Joining a small, highly technical team, I'm committed to providing and contributing to the success of the company.
+- Architected cost-efficient solutions for the AI team by deploying a model monitoring dashboard on ECS Fargate, leveraging Spot Instances and Lambda functions. Achieved a 70% reduction in operational costs.
+- Implemented security best practices, including vulnerability scanning with Trivy, identifying and resolving 40% of vulnerabilities through timely updates and patches.
+- Optimized CI processes by introducing Docker layer caching, reducing average pipeline time from 12 minutes to 3 minutes 43 seconds per run
+- Designed and executed automated testing strategies, integrating unit, integration, and end-to-end tests into the CI pipeline
