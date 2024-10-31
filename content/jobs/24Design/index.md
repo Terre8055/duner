@@ -1,5 +1,5 @@
 ---
-date: '2017-12-21'
+date: '2017-12-19'
 title: 'DevOps Engineer & Server Administrator (Remote)'
 company: '24Design'
 location: 'Lagos - Nigeria (Remote)'

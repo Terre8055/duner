@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import ReactPlayer from 'react-player';
 import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import { srConfig } from '@config';
@@ -154,9 +153,9 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              I am a Ghanaian software engineer specialising in DevOps and Cloud Infrastructure. My
-              interest for software development peaked in 2022 when I had to join a software
-              engineering bootcamp at <a href="https://alxafrica.com/">alx</a>.
+              I am a software engineer specialising in DevOps and Cloud Infrastructure. My interest
+              for software development peaked in 2022 when I had to join a software engineering
+              bootcamp at <a href="https://alxafrica.com/">alx</a>.
             </p>
 
             <p>
@@ -199,7 +198,7 @@ const About = () => {
         <StyledText>
           <div>
             <h2 className="numbered-heading">Highlight</h2>
-            <ReactPlayer
+            {/* <ReactPlayer
               url="/df.mp4"
               width={500}
               controls={true}
@@ -208,13 +207,70 @@ const About = () => {
                   tracks: [{ kind: 'subtitles', src: 'lecture.srt', srcLang: 'en', default: true }],
                 },
               }}
-            />
+            /> */}
           </div>
           <div>
             <p>
+              Running{' '}
+              <a
+                href="https://github.com/Terre8055/BitNet"
+                target="_blank"
+                rel="noopener noreferrer">
+                1-Bit
+              </a>{' '}
+              LLMs on deployed UI Playground. This project is a fork of Microsoft's{' '}
+              <a
+                href="https://github.com/microsoft/BitNet"
+                target="_blank"
+                rel="noopener noreferrer">
+                BitNet.cpp
+              </a>{' '}
+              official inference framework
+            </p>
+            <div className="video-container">
+              <iframe
+                src="https://www.loom.com/embed/e00c05ee5d564be8880c2495b18cebfe?sid=3f0b0833-d469-4aa0-98fd-31750fece8e3"
+                frameBorder="0"
+                webkitAllowFullScreen
+                mozAllowFullScreen
+                allowFullScreen
+                className="video-iframe"
+                title="Video demonstration of 1-Bit LLMs"
+                style={{ width: '500px', height: '500px' }}></iframe>
+            </div>
+          </div>
+          <div>
+            <br />
+            <div>
+              <p>Testing the deployed model directly from the terminal on t3.xlarge instance</p>
+              <div className="video-wrapper">
+                <iframe
+                  src="https://www.loom.com/embed/4c7ee84c81c6454fb231e48e26231376?sid=92303aae-7973-4b3e-945c-c51d8a5cac50"
+                  frameBorder="0"
+                  webkitAllowFullScreen
+                  mozAllowFullScreen
+                  allowFullScreen
+                  className="video-iframe"
+                  title="Testing the deployed model"
+                  style={{ width: '500px', height: '500px' }}></iframe>
+              </div>
+              <p>
+                Prompt (p): &quot;Palo Alto is a vibrant community in America with a bit of history
+                among startup founders. Can you tell me why it&apos;s loved by technophiles?&quot;
+                <br />
+                Model (m): Llama3-8B-1.58-100B-tokens
+                <br />
+                Temperature (t): 499
+                <br />
+                Tokens (n): 300
+              </p>
+            </div>
+          </div>
+          <div>
+            {/* <p>
               Check it out where I explain how these metrics improved my team's release strategy and
               deployment frequency by 60%{' '}
-            </p>
+            </p> */}
             <br />
             <IconAlerts />
           </div>
